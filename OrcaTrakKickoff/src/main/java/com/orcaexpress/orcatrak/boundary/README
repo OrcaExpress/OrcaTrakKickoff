@@ -1,2 +1,2 @@
-# Place in this package (com.orcaexpress.orcatrak.control) 
-# everything is related to control the application (e.g. JSF/CDI managed beans, validators)
+# Place in this package (com.orcaexpress.orcatrak.boundary) your EJBs classes 
+# TIP: Use only stateless EJBs
