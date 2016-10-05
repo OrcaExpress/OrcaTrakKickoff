@@ -11,5 +11,5 @@ Tested under Payara Server (must configure the jdbc/orca JNDI)
 Before running for the first time you must create the schema via hibernate.properties:
 - hibernate.hbm2ddl.auto=create-drop
 
-Afterwords, you can set:
+After that, you can set:
 - hibernate.hbm2ddl.auto=none
