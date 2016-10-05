@@ -9,7 +9,7 @@ Tested under Payara Server (must configure the jdbc/orca JNDI)
  - Logback
  
 Before running for the first time you must create the schema via hibernate.properties:
-hibernate.hbm2ddl.auto=create-drop
+- hibernate.hbm2ddl.auto=create-drop
 
 Afterwords, you can set:
-hibernate.hbm2ddl.auto=none
+- hibernate.hbm2ddl.auto=none
