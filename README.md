@@ -4,6 +4,8 @@ Tested under Payara Server (must configure the jdbc/orca JNDI)
 - Based on:
  - BCE structure
  - Java EE 7
+ - PrimeFaces (+themes)
+ - OmniFaces
  - Hibernate JPA (with bytecode enhancement)
  - JPA Modeler
  - Logback
