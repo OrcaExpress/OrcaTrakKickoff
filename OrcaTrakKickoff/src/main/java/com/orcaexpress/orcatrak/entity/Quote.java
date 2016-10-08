@@ -9,12 +9,14 @@ import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 //import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -25,57 +27,60 @@ import javax.persistence.Temporal;
  * number or internal tracking number is created; in the future the application
  * might be further developed to persist quotes.
  */
-//@Named
-//@RequestScoped
-//@Entity
-//@Table(name="QUOTES")
+
+@Named
+@RequestScoped
+@Entity
+@Table
 public class Quote {
 
-    //ORIGIN   
-    private String originZip;    
-    private Zone pickupZone;//#{quote.zoning} is it a business zone or residence zone big trucks are not allowed into residentials.  items or commodity must be placed on smaller trucks 
+    @Id
+    @Column(name = "ID", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "ORIGIN_ZIP", nullable = false)
+    private String originZip;
+
+    @Column(name = "PICKUP_ZONE", nullable = false)
+    private Zone pickupZone;
+
+    @Column(name = "PICKUP_DATE", nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date pickupDate;
+
+    @Column(name = "PICKUP_REQUIREMENTS")
     private Accessories pickupRequirements;
 
-    //DESTINATION
+    @Column(name = "DESTINATION_ZIP", nullable = false)
     private String destinationZip;
+    
+    @Column(name = "DELIVERY_ZONE", nullable = false)
     private Zone deliveryZone;
 
-//    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "DELIVERY_DATE", nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date deliveryDate;
 
+    @Column(name = "DELIVERY_REQUIREMENTS")
     private Accessories deliveryRequirements;
 
-    //ITEM SHIPMENT
-    /**
-     * client can add more items to include in quote; the way this works is; 1 
-     * pallet is 44 inches x 48 inches (12 inches is 1 m) an item sits on a
-     * pallet the weight is taken into consideration and a price quote is given;
-     * i have to get discount levels from shippers to finish the pricing
-     * i made this a list because 1 quote can have more than 1 palletized item;
-     * more items means price to ship goes up.  presentation layers shows you can add 
-     * more items 
-     */
-    private List<Item> itemList;  
+    @ManyToOne
+    @Column(name = "ITEM_LIST", nullable = false)
+    private List<Item> itemList;
 
-//    private Long bol;
+    @Column(name = "QUOTE_PRICE")
     private Double quotePrice;
 
-    /**
-     * i have user and client; maybe i need one but not 2 .. reason i have 2 is
-     * a client is a customer but not neccessarily uses our system; maybe he
-     * owes money so we block him so hes just a client but can not use it you
-     * tell me ??  i have a feeling the User field and/or client fields don't belong in this bean
-     * but this quote definitely belongs to a certain user so maybe it should stay 
-     * 
-     *
-     */
+    @ManyToOne
+    @Column(name = "USER")
     private User user;
 
     public Quote() {
     }
-
-    public Quote(String originZip, Zone pickupZone, Date pickupDate, Accessories pickupRequirements, String destinationZip, Zone deliveryZone, Date deliveryDate, Accessories deliveryRequirements, List<Item> itemList) {
+    
+    public Quote(Long id, String originZip, Zone pickupZone, Date pickupDate, Accessories pickupRequirements, String destinationZip, Zone deliveryZone, Date deliveryDate, Accessories deliveryRequirements, List<Item> itemList, User user) {
+        this.id = id;
         this.originZip = originZip;
         this.pickupZone = pickupZone;
         this.pickupDate = pickupDate;
@@ -85,13 +90,22 @@ public class Quote {
         this.deliveryDate = deliveryDate;
         this.deliveryRequirements = deliveryRequirements;
         this.itemList = itemList;
+        this.user = user;
     }
 
-    public String getOriginShipmentZip() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOriginZip() {
         return originZip;
     }
 
-    public void setOriginShipmentZip(String originZip) {
+    public void setOriginZip(String originZip) {
         this.originZip = originZip;
     }
 
@@ -119,11 +133,11 @@ public class Quote {
         this.pickupRequirements = pickupRequirements;
     }
 
-    public String getDestinationShipmentZip() {
+    public String getDestinationZip() {
         return destinationZip;
     }
 
-    public void setDestinationShipmentZip(String destinationZip) {
+    public void setDestinationZip(String destinationZip) {
         this.destinationZip = destinationZip;
     }
 
@@ -157,5 +171,21 @@ public class Quote {
 
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
+    }
+
+    public Double getQuotePrice() {
+        return quotePrice;
+    }
+
+    public void setQuotePrice(Double quotePrice) {
+        this.quotePrice = quotePrice;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
