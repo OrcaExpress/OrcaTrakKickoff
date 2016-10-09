@@ -1,39 +1,60 @@
 package com.orcaexpress.orcatrak.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-/**
- * Represents an item on which bidders bid.
- */
-//@Entity
-//@Table(name = "ITEMS")
+@Entity
+@Table(name = "ITEMS")
 public class Item implements Serializable {
 
+    @Id
+    @Column(name = "ID", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "DESCRIPTION")
     private String description;
+    
+    @Column(name = "CLASSIFICATION", nullable = false)
     private String classificication;
-    private int pieces;
-    private byte weight;
+    
+    @Column(name = "PIECES")
+    private Byte pieces;
+    
+    @Column(name = "WEIGHT", nullable = false)
+    private Byte weight;
+    
+    @Column(name = "STACKABLE")
     private boolean isStackable = false;
+    
+    @Column(name = "HAZMAT")
     private boolean isHazmat = false;
 
-    public Item(String description, String classificication, int pieces, byte weight, boolean isStackable, boolean isHazmat) {
+    public Item() {
+    }
+    
+    public Item(Long id, String description, String classificication, Byte pieces, Byte weight) {
+        this.id = id;
         this.description = description;
         this.classificication = classificication;
         this.pieces = pieces;
         this.weight = weight;
-        this.isStackable = isStackable;
-        this.isHazmat = isHazmat;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -52,19 +73,19 @@ public class Item implements Serializable {
         this.classificication = classificication;
     }
 
-    public int getPcs() {
+    public Byte getPieces() {
         return pieces;
     }
 
-    public void setPcs(int pieces) {
+    public void setPieces(Byte pieces) {
         this.pieces = pieces;
     }
 
-    public byte getWeight() {
+    public Byte getWeight() {
         return weight;
     }
 
-    public void setWeight(byte weight) {
+    public void setWeight(Byte weight) {
         this.weight = weight;
     }
 

@@ -3,9 +3,6 @@ package com.orcaexpress.orcatrak.entity;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-/**
- * Represents an address
- */
 @Embeddable
 public class Address implements java.io.Serializable {
 
