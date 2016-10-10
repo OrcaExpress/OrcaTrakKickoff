@@ -1,5 +1,7 @@
 package com.orcaexpress.orcatrak.entity;
 
+import com.orcaexpress.orcatrak.helper.Exemptable;
+import com.orcaexpress.orcatrak.helper.AccountExemptionHandler;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +22,8 @@ public class Order extends Quote implements Serializable{
         super();
     }
     
-    private boolean isAccountInGoodStanding (User user, Double amount, Exemptable ex, AccountExemptionHandler accountExemptionHandler) { 
+    private boolean isAccountInGoodStanding (User user, Double amount, Exemptable ex, 
+            AccountExemptionHandler accountExemptionHandler) { 
         return true;
     }
 }

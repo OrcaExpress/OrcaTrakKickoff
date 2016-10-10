@@ -9,14 +9,9 @@
     </h:head>
     <h:body>  
         <p:panelGrid>
-            Insert a dummy record:
-            <h:form id="dummyForm">            
-                <p:inputText id="dummyText" value="#{dummyBean.dummy.text}" label="Dummy text:" />
-                <p:commandButton value="Save" action="#{dummyBean.dummyAction()}" ajax="false"/>
+            <h:form>            
+                <p:commandButton value="Add user" action="#{userBean.saveUserAction()}" ajax="false"/>               
             </h:form>
-            <br/>
-            Dummies:
-            #{dummyBean.allDummies()}
         </p:panelGrid>
     </h:body>
 </html>

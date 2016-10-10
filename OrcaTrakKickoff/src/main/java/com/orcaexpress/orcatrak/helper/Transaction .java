@@ -1,4 +1,4 @@
-package com.orcaexpress.orcatrak.entity;
+package com.orcaexpress.orcatrak.helper;
 
 class Transaction { //IMMUTABLE CLASS all data fields here are ENCAPSULATED
 

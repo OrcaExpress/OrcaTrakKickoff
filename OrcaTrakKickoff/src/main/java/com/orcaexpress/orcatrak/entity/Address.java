@@ -1,28 +1,18 @@
 package com.orcaexpress.orcatrak.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address implements java.io.Serializable {
+    
+    private String streetAddress;
+    private String city;
+    private String state;
+    private String zipCode;
+    private String country;
 
-    protected String streetAddress;
-    
-    protected String city;
-    
-    @Column(name = "STATE_CODE")
-    protected String state;
-    
-    @Column(name = "ZIP_CODE")
-    protected String zipCode;
-    
-    protected String country;
-
-    /**
-     * No arg default constructor. Required for JPA.
-     */
     public Address() {
-        // No arg default constructor
+        // NOPE
     }
 
     public Address(String streetAddress, String city, String state, String zipCode) {
@@ -71,4 +61,5 @@ public class Address implements java.io.Serializable {
     public void setCountry(String country) {
         this.country = country;
     }
+    
 }

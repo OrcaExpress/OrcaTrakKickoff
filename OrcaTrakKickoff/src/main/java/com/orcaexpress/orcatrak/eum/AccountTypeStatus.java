@@ -1,4 +1,4 @@
-package com.orcaexpress.orcatrak.entity;
+package com.orcaexpress.orcatrak.eum;
 
 /**
  * All accounts will be NET0 meaning invoices are due to be paid immediately,
@@ -6,7 +6,7 @@ package com.orcaexpress.orcatrak.entity;
  * NET15 OR NET30 depending of account's credit rating or payment history
  */
 
-public enum AccountType {
+public enum AccountTypeStatus {
     NET0, 
     NET15,
     NET30    

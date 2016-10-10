@@ -1,4 +1,6 @@
-package com.orcaexpress.orcatrak.entity;
+package com.orcaexpress.orcatrak.helper;
+
+import com.orcaexpress.orcatrak.entity.User;
 
 class Account {
 

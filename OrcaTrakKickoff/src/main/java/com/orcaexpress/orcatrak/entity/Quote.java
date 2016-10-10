@@ -1,29 +1,25 @@
 package com.orcaexpress.orcatrak.entity;
 
+import com.orcaexpress.orcatrak.eum.ZoneStatus;
+import com.orcaexpress.orcatrak.eum.AccessoryStatus;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.CascadeType.REMOVE;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import static javax.persistence.FetchType.LAZY;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-@Named
-@RequestScoped
 @Entity
 @Table(name = "QUOTES")
 public class Quote implements Serializable {
@@ -33,49 +29,63 @@ public class Quote implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // what zipcode is the product being shipped FROM
     @Column(name = "ORIGIN_ZIP", nullable = false)
-    private String originZip;// ===================================== what zipcode is the product being shipped FROM
+    private String originZip;
 
+    // is the pickup address zoned BUSINESS or RESIDENTIAL (extra costs are 
+    // associated with residential; trucks weighing more than 22,000kg are
+    // not allowed through residential homes)
     @Column(name = "PICKUP_ZONE", nullable = false)
-    private Zone pickupZone;// ====================================== is the pickup address zoned BUSINESS or RESIDENTIAL (extra costs are associated with residential; trucks weighing more than 22,000kg are not allowed through residential homes)
+    private ZoneStatus pickupZone;
 
+    // pickup date
     @Column(name = "PICKUP_DATE", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date pickupDate;// ====================================== pickup date
+    private Date pickupDate;
 
+    // ENUM does receiving customer need LIFTGATE, INSIDE_PICKUP, NOTIFY_PRIOR_TO_ARRIVAL
     @Column(name = "PICKUP_REQUIREMENTS")
     @Enumerated(EnumType.STRING)
-    private Accessories pickupRequirements;// ======================= ENUM does receiving customer need LIFTGATE, INSIDE_PICKUP, NOTIFY_PRIOR_TO_ARRIVAL
+    private AccessoryStatus pickupRequirements;
 
+    // what zipcode is the product being shipped TO
     @Column(name = "DESTINATION_ZIP", nullable = false)
-    private String destinationZip;// ================================ what zipcode is the product being shipped TO
+    private String destinationZip;
 
+    // is the delivery address zoned BUSINESS or RESIDENTIAL (extra costs are 
+    // associated with residential; trucks weighing more than 22,000kg are not 
+    // allowed through residential homes)
     @Column(name = "DELIVERY_ZONE", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Zone deliveryZone;// ==================================== is the delivery address zoned BUSINESS or RESIDENTIAL (extra costs are associated with residential; trucks weighing more than 22,000kg are not allowed through residential homes)
+    private ZoneStatus deliveryZone;
 
+    // what date is the product being delivered at 
     @Column(name = "DELIVERY_DATE", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date deliveryDate;// ==================================== what date is the product being delivered at 
-    
+    private Date deliveryDate;
+
+    // ENUM does receiving customer need LIFTGATE, INSIDE_PICKUP, NOTIFY_PRIOR_TO_ARRIVAL
     @Column(name = "DELIVERY_REQUIREMENTS")
     @Enumerated(EnumType.STRING)
-    private Accessories deliveryRequirements;// ===================== ENUM does receiving customer need LIFTGATE, INSIDE_PICKUP, NOTIFY_PRIOR_TO_ARRIVAL
+    private AccessoryStatus deliveryRequirements;
 
+    // price quotation on the delivery
     @Column(name = "QUOTE_PRICE")
-    private Double quotePrice;// ==================================== price quotation on the delivery
+    private Double quotePrice;
 
+    // how many items are being quoted for in ONE shipment; more items means higher price
     @JoinColumn
-    @OneToMany(cascade = {PERSIST, REMOVE, MERGE}) //can replace all 3 by ALL
-    private Set<Item> items = new HashSet<>();// ==================== how many items are being quoted for in ONE shipment; more items means higher price
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Item> items = new HashSet<>();
 
-    @OneToMany(fetch = LAZY) //default fetch is lazy
+    @ManyToOne
     private User user;
 
     public Quote() {
     }
 
-    public Quote(Long id, String originZip, Zone pickupZone, Date pickupDate, Accessories pickupRequirements, String destinationZip, Zone deliveryZone, Date deliveryDate, Accessories deliveryRequirements, Double quotePrice, Set<Item> items, User user) {
+    public Quote(Long id, String originZip, ZoneStatus pickupZone, Date pickupDate, AccessoryStatus pickupRequirements, String destinationZip, ZoneStatus deliveryZone, Date deliveryDate, AccessoryStatus deliveryRequirements, Double quotePrice, Set<Item> items, User user) {
         this.id = id;
         this.originZip = originZip;
         this.pickupZone = pickupZone;
@@ -106,11 +116,11 @@ public class Quote implements Serializable {
         this.originZip = originZip;
     }
 
-    public Zone getPickupZone() {
+    public ZoneStatus getPickupZone() {
         return pickupZone;
     }
 
-    public void setPickupZone(Zone pickupZone) {
+    public void setPickupZone(ZoneStatus pickupZone) {
         this.pickupZone = pickupZone;
     }
 
@@ -122,11 +132,11 @@ public class Quote implements Serializable {
         this.pickupDate = pickupDate;
     }
 
-    public Accessories getPickupRequirements() {
+    public AccessoryStatus getPickupRequirements() {
         return pickupRequirements;
     }
 
-    public void setPickupRequirements(Accessories pickupRequirements) {
+    public void setPickupRequirements(AccessoryStatus pickupRequirements) {
         this.pickupRequirements = pickupRequirements;
     }
 
@@ -138,11 +148,11 @@ public class Quote implements Serializable {
         this.destinationZip = destinationZip;
     }
 
-    public Zone getDeliveryZone() {
+    public ZoneStatus getDeliveryZone() {
         return deliveryZone;
     }
 
-    public void setDeliveryZone(Zone deliveryZone) {
+    public void setDeliveryZone(ZoneStatus deliveryZone) {
         this.deliveryZone = deliveryZone;
     }
 
@@ -154,11 +164,11 @@ public class Quote implements Serializable {
         this.deliveryDate = deliveryDate;
     }
 
-    public Accessories getDeliveryRequirements() {
+    public AccessoryStatus getDeliveryRequirements() {
         return deliveryRequirements;
     }
 
-    public void setDeliveryRequirements(Accessories deliveryRequirements) {
+    public void setDeliveryRequirements(AccessoryStatus deliveryRequirements) {
         this.deliveryRequirements = deliveryRequirements;
     }
 

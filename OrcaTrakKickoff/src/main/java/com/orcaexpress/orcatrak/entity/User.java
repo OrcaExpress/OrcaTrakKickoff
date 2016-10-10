@@ -1,26 +1,26 @@
 package com.orcaexpress.orcatrak.entity;
 
+import com.orcaexpress.orcatrak.eum.AccountTypeStatus;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.Transient;
 
-/**
- *
- * Now, a user can have multiple quotes, so a many-to-one defined in Quote will
- * be nice. We will see if one-to-many is User is necesary or not in the future.
- *
- */
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
@@ -51,17 +51,26 @@ public class User implements Serializable {
     @Column(name = "FAX")
     private String fax;
 
-    @Transient
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "streetAddress", column = @Column(name = "STREET_ADDRESS_BUSINESS")),
+        @AttributeOverride(name = "city", column = @Column(name = "CITY_BUSINESS")),
+        @AttributeOverride(name = "state", column = @Column(name = "STATE_BUSINESS")),
+        @AttributeOverride(name = "zipCode", column = @Column(name = "ZIPCODE_BUSINESS")),
+        @AttributeOverride(name = "country", column = @Column(name = "COUNTRY_BUSINESS"))
+    })
     private Address businessAddress;
 
-    @Transient
-    private Address billingAddress;// ==================================== Credit card billing address must match this address
-    
-    @Transient
-    private Set<Quote> quotes = new HashSet<>();// ==================================== bidrectional relationship
-
-    @Transient
-    private Set<Quote> orders = new HashSet<>();
+    // Credit card billing address must match this address    
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "streetAddress", column = @Column(name = "STREET_ADDRESS_BILLING")),
+        @AttributeOverride(name = "city", column = @Column(name = "CITY_BILLING")),
+        @AttributeOverride(name = "state", column = @Column(name = "STATE_BILLING")),
+        @AttributeOverride(name = "zipCode", column = @Column(name = "ZIPCODE_BILLING")),
+        @AttributeOverride(name = "country", column = @Column(name = "COUNTRY_BILLING"))
+    })
+    private Address billingAddress;
 
     @Column(name = "ACCOUNT_OPEN_DATE")
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -69,12 +78,17 @@ public class User implements Serializable {
 
     @Column(name = "ACCOUNT_TYPE")
     @Enumerated(EnumType.STRING)
-    private AccountType accountType;
+    private AccountTypeStatus accountType;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Quote> quotes = new ArrayList<>();
+
+    //@Transient
+    //private Set<Quote> orders = new HashSet<>();
     public User() {
     }
 
-    public User(String firstName, String lastName, String businessName, String email, String phone, String cellPhone, Address businessAddress, Address billingAddress, AccountType accountType) {
+    public User(String firstName, String lastName, String businessName, String email, String phone, String cellPhone, Address businessAddress, Address billingAddress, AccountTypeStatus accountType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.businessName = businessName;
@@ -149,7 +163,7 @@ public class User implements Serializable {
     public void setFax(String fax) {
         this.fax = fax;
     }
-    
+
     public Address getBusinessAddress() {
         return businessAddress;
     }
@@ -165,15 +179,8 @@ public class User implements Serializable {
     public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
     }
-    
-    public Set<Quote> getQuotes() {
-        return quotes;
-    }
 
-    public void setQuotes(Set<Quote> quotes) {
-        this.quotes = quotes;
-    }
-
+    /*
     public Set<Quote> getOrders() {
         return orders;
     }
@@ -181,7 +188,7 @@ public class User implements Serializable {
     public void setOrders(Set<Quote> orders) {
         this.orders = orders;
     }
-
+     */
     public Date getAccountOpenDate() {
         return accountOpenDate;
     }
@@ -190,11 +197,11 @@ public class User implements Serializable {
         this.accountOpenDate = accountOpenDate;
     }
 
-    public AccountType getAccountType() {
+    public AccountTypeStatus getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(AccountType accountType) {
+    public void setAccountType(AccountTypeStatus accountType) {
         this.accountType = accountType;
     }
 }
