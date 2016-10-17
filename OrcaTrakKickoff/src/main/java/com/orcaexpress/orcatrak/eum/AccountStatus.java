@@ -5,9 +5,9 @@ package com.orcaexpress.orcatrak.eum;
  * later when the company has enough capital accounts will be switched between
  * NET15 OR NET30 depending of account's credit rating or payment history
  */
-
-public enum AccountTypeStatus {
-    NET0, 
+public enum AccountStatus {
+    NET0,
     NET15,
-    NET30    
+    NET30,
+    LOCKED
 }

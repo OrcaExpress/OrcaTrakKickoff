@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,6 +38,11 @@ public class Quote implements Serializable {
     @Column(name = "PICKUP_ZONE", nullable = false)
     private ZoneStatus pickupZone;
 
+    // order creation date
+    @Column(name = "CREATION_DATE", nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date creationDate;
+
     // pickup date
     @Column(name = "PICKUP_DATE", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -60,11 +64,6 @@ public class Quote implements Serializable {
     @Enumerated(EnumType.STRING)
     private ZoneStatus deliveryZone;
 
-    // what date is the product being delivered at 
-    @Column(name = "DELIVERY_DATE", nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date deliveryDate;
-
     // ENUM does receiving customer need LIFTGATE, INSIDE_PICKUP, NOTIFY_PRIOR_TO_ARRIVAL
     @Column(name = "DELIVERY_REQUIREMENTS")
     @Enumerated(EnumType.STRING)
@@ -79,13 +78,10 @@ public class Quote implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Item> items = new HashSet<>();
 
-    @ManyToOne
-    private User user;
-
     public Quote() {
     }
 
-    public Quote(Long id, String originZip, ZoneStatus pickupZone, Date pickupDate, AccessoryStatus pickupRequirements, String destinationZip, ZoneStatus deliveryZone, Date deliveryDate, AccessoryStatus deliveryRequirements, Double quotePrice, Set<Item> items, User user) {
+    public Quote(Long id, String originZip, ZoneStatus pickupZone, Date pickupDate, AccessoryStatus pickupRequirements, String destinationZip, ZoneStatus deliveryZone, AccessoryStatus deliveryRequirements, Double quotePrice, Set<Item> items) {
         this.id = id;
         this.originZip = originZip;
         this.pickupZone = pickupZone;
@@ -93,11 +89,9 @@ public class Quote implements Serializable {
         this.pickupRequirements = pickupRequirements;
         this.destinationZip = destinationZip;
         this.deliveryZone = deliveryZone;
-        this.deliveryDate = deliveryDate;
         this.deliveryRequirements = deliveryRequirements;
         this.items = items;
         this.quotePrice = quotePrice;
-        this.user = user;
     }
 
     public Long getId() {
@@ -132,6 +126,14 @@ public class Quote implements Serializable {
         this.pickupDate = pickupDate;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public AccessoryStatus getPickupRequirements() {
         return pickupRequirements;
     }
@@ -156,14 +158,6 @@ public class Quote implements Serializable {
         this.deliveryZone = deliveryZone;
     }
 
-    public Date getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
     public AccessoryStatus getDeliveryRequirements() {
         return deliveryRequirements;
     }
@@ -186,13 +180,5 @@ public class Quote implements Serializable {
 
     public void setItems(Set<Item> items) {
         this.items = items;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

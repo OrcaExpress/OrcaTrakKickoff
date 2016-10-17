@@ -4,5 +4,5 @@ import com.orcaexpress.orcatrak.entity.User;
 
 @FunctionalInterface
 public interface Exemptable {
-    public boolean isExempt(User user);
+    public boolean isExempt(User accountHolder);
 }

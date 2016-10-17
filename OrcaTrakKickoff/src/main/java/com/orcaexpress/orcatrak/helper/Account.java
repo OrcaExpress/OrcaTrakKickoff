@@ -1,8 +1,9 @@
 package com.orcaexpress.orcatrak.helper;
 
 import com.orcaexpress.orcatrak.entity.User;
+//import com.orcaexpress.orcatrak.helper.Transaction;
 
-class Account {
+public class Account {
 
     private User user;
     private int id;

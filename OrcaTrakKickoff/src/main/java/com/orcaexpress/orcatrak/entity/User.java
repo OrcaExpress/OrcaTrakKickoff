@@ -1,6 +1,6 @@
 package com.orcaexpress.orcatrak.entity;
 
-import com.orcaexpress.orcatrak.eum.AccountTypeStatus;
+import com.orcaexpress.orcatrak.eum.AccountStatus;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -76,28 +76,20 @@ public class User implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date accountOpenDate;
 
-    @Column(name = "ACCOUNT_TYPE")
+    @Column(name = "ACCOUNT_STATUS")
     @Enumerated(EnumType.STRING)
-    private AccountTypeStatus accountType;
+    private AccountStatus accountStatus;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Quote> quotes = new ArrayList<>();
+    
+    @Column(name = "BALANCE")
+    private Double balance;
 
-    //@Transient
+    //@ManyToOne(cascasde = CascadeType.All, mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
     //private Set<Quote> orders = new HashSet<>();
-    public User() {
-    }
 
-    public User(String firstName, String lastName, String businessName, String email, String phone, String cellPhone, Address businessAddress, Address billingAddress, AccountTypeStatus accountType) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.businessName = businessName;
-        this.email = email;
-        this.phone = phone;
-        this.cellPhone = cellPhone;
-        this.businessAddress = businessAddress;
-        this.billingAddress = billingAddress;
-        this.accountType = accountType;
+    public User() {
     }
 
     public Long getId() {
@@ -180,15 +172,6 @@ public class User implements Serializable {
         this.billingAddress = billingAddress;
     }
 
-    /*
-    public Set<Quote> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Quote> orders) {
-        this.orders = orders;
-    }
-     */
     public Date getAccountOpenDate() {
         return accountOpenDate;
     }
@@ -197,11 +180,27 @@ public class User implements Serializable {
         this.accountOpenDate = accountOpenDate;
     }
 
-    public AccountTypeStatus getAccountType() {
-        return accountType;
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
     }
 
-    public void setAccountType(AccountTypeStatus accountType) {
-        this.accountType = accountType;
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public List<Quote> getQuotes() {
+        return quotes;
+    }
+
+    public void setQuotes(List<Quote> quotes) {
+        this.quotes = quotes;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }

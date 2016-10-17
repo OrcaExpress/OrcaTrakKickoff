@@ -12,7 +12,6 @@ public class Address implements java.io.Serializable {
     private String country;
 
     public Address() {
-        // NOPE
     }
 
     public Address(String streetAddress, String city, String state, String zipCode) {
