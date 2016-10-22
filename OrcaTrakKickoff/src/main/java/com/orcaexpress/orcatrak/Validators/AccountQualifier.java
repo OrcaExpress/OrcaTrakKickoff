@@ -1,7 +1,7 @@
 package com.orcaexpress.orcatrak.Validators;
 
-import com.orcaexpress.orcatrak.entity.Order;
-import com.orcaexpress.orcatrak.entity.User;
+import com.orcaexpress.orcatrak.entity.old.Order;
+import com.orcaexpress.orcatrak.entity.old.User;
 import com.orcaexpress.orcatrak.eum.AccountStatus;
 import com.orcaexpress.orcatrak.helper.Exemptable;
 import javax.validation.Constraint;
@@ -40,7 +40,8 @@ public @interface AccountQualifier {
         }
 
         private boolean isAccountInGoodStanding(Exemptable ex) {
-            return ex.isExempt(order.getAccountHolder());
+           // return ex.isExempt(order.getAccountHolder());
+           return true;
         }
     }
 }

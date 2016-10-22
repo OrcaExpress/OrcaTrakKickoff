@@ -1,6 +1,6 @@
 package com.orcaexpress.orcatrak.helper;
 
-import com.orcaexpress.orcatrak.entity.User;
+import com.orcaexpress.orcatrak.entity.old.User;
 //import com.orcaexpress.orcatrak.helper.Transaction;
 
 public class Account {

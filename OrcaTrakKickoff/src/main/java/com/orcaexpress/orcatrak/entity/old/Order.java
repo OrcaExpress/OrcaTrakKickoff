@@ -1,10 +1,8 @@
-package com.orcaexpress.orcatrak.entity;
+package com.orcaexpress.orcatrak.entity.old;
 
 import com.orcaexpress.orcatrak.Validators.AccountQualifier;
-import com.orcaexpress.orcatrak.eum.AccountStatus;
 import com.orcaexpress.orcatrak.helper.Archived;
 import com.orcaexpress.orcatrak.helper.Delivery;
-import com.orcaexpress.orcatrak.helper.Exemptable;
 import com.orcaexpress.orcatrak.helper.Payment;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,21 +14,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.validation.ConstraintValidatorContext;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import org.slf4j.LoggerFactory;
 
-@Entity
-@Table(name = "ORDERS")
-@AccountQualifier(groups = Archived.class)
+//@Entity
+//@Table(name = "ORDERS")
+//@AccountQualifier(groups = Archived.class)
 public class Order extends Quote implements Serializable {
     
-    private final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
+   // private final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+/*
     @Id
     @Column(name = "ID", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,14 +48,14 @@ public class Order extends Quote implements Serializable {
     private User accountHolder;
 
     @Column(name = "PAYMENT_DATE", nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    //@Temporal(javax.persistence.TemporalType.DATE)
     @NotNull(groups = Payment.class)
     @Past(groups = Payment.class)
     private Double paymentDate;
 
     // what date is the product being delivered at 
     @Column(name = "DELIVERY_DATE", nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    //@Temporal(javax.persistence.TemporalType.DATE)
     @NotNull(groups = Delivery.class)
     @Past(groups = Delivery.class)
     private Date deliveryDate;
@@ -132,4 +127,5 @@ public class Order extends Quote implements Serializable {
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
+*/
 }

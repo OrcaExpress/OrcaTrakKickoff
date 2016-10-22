@@ -2,19 +2,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:o="http://omnifaces.org/ui"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Orca Trak</title>          
+        <title>OrcaTrak</title>         
     </h:head>
-    <h:body>  
-        <p:panelGrid>
-            <h:form>            
-                <p:commandButton value="Add user" action="#{userBean.saveUserAction()}" ajax="false"/>               
-            </h:form>
-        </p:panelGrid>
+    <h:body>
+        <ui:composition template="template/layout.xhtml">
+
+            <!-- define title -->
+            <ui:define name="title">
+                <h2>OrcaTrak</h2>
+            </ui:define>
+
+            <!-- skip subtitle sections -->
+            <ui:param name="subtitle" value="false"/>
+
+            <!-- skip intro but define header -->
+            <ui:param name="intro" value="false"/>
+            <ui:define name="mainheader">
+                <h4>OrcaTrak Header</h4>
+            </ui:define>   
+
+            <!-- skip menu -->
+            <ui:param name="topmenu" value="false"/>
+
+            <!-- skip left and right panels (the central panel cannot be skipped) -->
+            <ui:param name="leftpanel" value="false"/>
+            <ui:param name="rightpanel" value="false"/>
+
+            <!-- define footer -->
+            <ui:define name="mainfooter">
+                <h4>OrcaTrak Footer</h4>
+            </ui:define>   
+
+        </ui:composition>
     </h:body>
 </html>
-
-
 

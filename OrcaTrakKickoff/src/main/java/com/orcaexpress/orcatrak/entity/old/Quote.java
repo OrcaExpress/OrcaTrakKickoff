@@ -1,4 +1,4 @@
-package com.orcaexpress.orcatrak.entity;
+package com.orcaexpress.orcatrak.entity.old;
 
 import com.orcaexpress.orcatrak.eum.ZoneStatus;
 import com.orcaexpress.orcatrak.eum.AccessoryStatus;
@@ -15,12 +15,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-@Entity
-@Table(name = "QUOTES")
+//@Entity
+//@Table(name = "QUOTES")
 public class Quote implements Serializable {
 
     @Id
@@ -77,6 +78,9 @@ public class Quote implements Serializable {
     @JoinColumn
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Item> items = new HashSet<>();
+    
+    @ManyToOne
+    private User user;
 
     public Quote() {
     }
@@ -106,6 +110,14 @@ public class Quote implements Serializable {
         return originZip;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }   
+    
     public void setOriginZip(String originZip) {
         this.originZip = originZip;
     }

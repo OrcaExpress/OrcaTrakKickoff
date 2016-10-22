@@ -1,4 +1,4 @@
-package com.orcaexpress.orcatrak.entity;
+package com.orcaexpress.orcatrak.entity.old;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-@Entity
-@Table(name = "ITEMS")
+//@Entity
+//@Table(name = "ITEMS")
 public class Item implements Serializable {
 
     @Id

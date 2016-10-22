@@ -1,4 +1,4 @@
-package com.orcaexpress.orcatrak.entity;
+package com.orcaexpress.orcatrak.entity.old;
 
 import com.orcaexpress.orcatrak.eum.AccountStatus;
 import java.io.Serializable;
@@ -21,8 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-@Entity
-@Table(name = "USERS")
+//@Entity
+//@Table(name = "USERS")
 public class User implements Serializable {
 
     @Id

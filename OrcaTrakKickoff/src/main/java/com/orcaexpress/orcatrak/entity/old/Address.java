@@ -1,4 +1,4 @@
-package com.orcaexpress.orcatrak.entity;
+package com.orcaexpress.orcatrak.entity.old;
 
 import javax.persistence.Embeddable;
 

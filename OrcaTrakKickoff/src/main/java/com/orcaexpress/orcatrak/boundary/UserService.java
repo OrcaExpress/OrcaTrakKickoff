@@ -1,6 +1,6 @@
 package com.orcaexpress.orcatrak.boundary;
 
-import com.orcaexpress.orcatrak.entity.User;
+import com.orcaexpress.orcatrak.entity.old.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
