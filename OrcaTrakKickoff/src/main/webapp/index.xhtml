@@ -4,38 +4,34 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>OrcaTrak</title>         
+        <title>OrcaTrak - Home Page</title>            
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />        
     </h:head>
     <h:body>
-        <ui:composition template="template/layout.xhtml">
+        <ui:decorate template="template/layout.xhtml">                        
 
-            <!-- define title -->
-            <ui:define name="title">
-                <h2>OrcaTrak</h2>
-            </ui:define>
-
-            <!-- skip subtitle sections -->
-            <ui:param name="subtitle" value="false"/>
-
-            <!-- skip intro but define header -->
-            <ui:param name="intro" value="false"/>
-            <ui:define name="mainheader">
-                <h4>OrcaTrak Header</h4>
-            </ui:define>   
-
-            <!-- skip menu -->
+            <!-- skip all -->
+            <ui:param name="title" value="false"/>  
+            <ui:param name="subtitle" value="false"/>  
+            <ui:param name="mainheader" value="false"/>
             <ui:param name="topmenu" value="false"/>
-
-            <!-- skip left and right panels (the central panel cannot be skipped) -->
             <ui:param name="leftpanel" value="false"/>
-            <ui:param name="rightpanel" value="false"/>
-
-            <!-- define footer -->
-            <ui:define name="mainfooter">
-                <h4>OrcaTrak Footer</h4>
-            </ui:define>   
-
-        </ui:composition>
+            <ui:param name="rightpanel" value="false"/>  
+            <ui:param name="mainfooter" value="false"/> 
+            
+            <ui:define name="centerpanel">
+                <a href="login/login.xhtml">Login page</a>
+                <br/>
+                <hr/>
+                <a href="pages/rename-me.xhtml">Secured page of <b>users</b></a>                
+                <hr/>
+                <a href="admin/orca-admin.xhtml">Secured page of <b>admin</b></a>                
+            </ui:define>
+        </ui:decorate>
     </h:body>
 </html>
 

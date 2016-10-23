@@ -31,6 +31,7 @@
         <commons-lang3.version>3.4</commons-lang3.version>
         <javax-transaction.version>1.1</javax-transaction.version>
         <primefaces-theme.version>1.0.8</primefaces-theme.version>
+        <prettyfaces.version>3.4.1.Final</prettyfaces.version>
     </properties>
     
     <dependencies>
@@ -114,6 +115,18 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+        
+        <!-- for JSF 2.x -->
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-servlet</artifactId>
+            <version>${prettyfaces.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-config-prettyfaces</artifactId>
+            <version>${prettyfaces.version}</version>
         </dependency>  
     </dependencies>
     <build>

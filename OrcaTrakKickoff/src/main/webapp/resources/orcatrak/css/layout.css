@@ -2,6 +2,12 @@ div {
     border: 1px dotted lightgray;
 }
 
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
 #title {   
     color: red;
     text-align:center;
@@ -21,19 +27,29 @@ div {
 
 #intro {}
 
-#mainheader {}
-
-#mainfooter {
-    text-align: center;
+#mainheader {
+    background-color: #efefef;
 }
 
 #mainpanel {
-    text-align: center;
+    text-align: center;       
 }
 
 #leftpanel {}
 #rightpanel {}
 #centerpanel {}
+
+#mainfooter {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;     
+    padding: 0;
+    margin: 0;    
+    clear: both;
+    background-color: #efefef;
+    text-align: center;
+}
 
 #topmenu {
     white-space: nowrap;

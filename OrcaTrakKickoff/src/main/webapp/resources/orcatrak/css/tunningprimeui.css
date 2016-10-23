@@ -1,0 +1,14 @@
+
+/* this CSS is needed to style the PrimeUI components font and size */
+.ui-widget {
+    font-family: Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;                
+}
+.ui-widget-content {
+    margin-top: 5px;
+}
+
