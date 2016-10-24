@@ -67,7 +67,7 @@
         <role-name>userRole</role-name>
     </security-role>
     <security-role>
-        <description>OrcaTrak admin is in this role</description>
+        <description>The OrcaTrak admin is in this role</description>
         <role-name>adminRole</role-name>
     </security-role>
 </web-app>
