@@ -1,3 +1,4 @@
 - Add pretty URL at the end
 - Add combined resource handler and defer resources loading
 - Switch the DEVELOPMENT flag
+- compress the background image

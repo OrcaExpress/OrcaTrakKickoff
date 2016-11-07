@@ -80,8 +80,8 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Quote> quotes = new ArrayList<>();
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    //private List<Quote> quotes = new ArrayList<>();
     
     @Column(name = "BALANCE")
     private Double balance;
@@ -187,7 +187,7 @@ public class User implements Serializable {
     public void setAccountStatus(AccountStatus accountStatus) {
         this.accountStatus = accountStatus;
     }
-
+/*
     public List<Quote> getQuotes() {
         return quotes;
     }
@@ -195,7 +195,7 @@ public class User implements Serializable {
     public void setQuotes(List<Quote> quotes) {
         this.quotes = quotes;
     }
-
+*/
     public Double getBalance() {
         return balance;
     }

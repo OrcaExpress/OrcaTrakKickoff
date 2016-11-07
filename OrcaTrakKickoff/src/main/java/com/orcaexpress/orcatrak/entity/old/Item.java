@@ -43,5 +43,77 @@ public class Item implements Serializable {
     @Column(name = "FREEZE_SUSEPTIBLE")
     private boolean isFreezeSuseptible;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getClassificication() {
+        return classificication;
+    }
+
+    public void setClassificication(String classificication) {
+        this.classificication = classificication;
+    }
+
+    public Byte getPieces() {
+        return pieces;
+    }
+
+    public void setPieces(Byte pieces) {
+        this.pieces = pieces;
+    }
+
+    public Byte getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Byte weight) {
+        this.weight = weight;
+    }
+
+    public boolean isIsStackable() {
+        return isStackable;
+    }
+
+    public void setIsStackable(boolean isStackable) {
+        this.isStackable = isStackable;
+    }
+
+    public boolean isIsHazmat() {
+        return isHazmat;
+    }
+
+    public void setIsHazmat(boolean isHazmat) {
+        this.isHazmat = isHazmat;
+    }
+
+    public boolean isIsExtremeLength() {
+        return isExtremeLength;
+    }
+
+    public void setIsExtremeLength(boolean isExtremeLength) {
+        this.isExtremeLength = isExtremeLength;
+    }
+
+    public boolean isIsFreezeSuseptible() {
+        return isFreezeSuseptible;
+    }
+
+    public void setIsFreezeSuseptible(boolean isFreezeSuseptible) {
+        this.isFreezeSuseptible = isFreezeSuseptible;
+    }
+
      
 }

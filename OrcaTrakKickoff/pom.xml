@@ -94,12 +94,13 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
             <version>${hibernate-jpamodelgen.version}</version>
         </dependency>
-        
+        -->
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -184,8 +185,8 @@
                     <execution>
                         <configuration>
                             <failOnError>true</failOnError>
-                            <enableLazyInitialization>true</enableLazyInitialization>
-                            <enableDirtyTracking>false</enableDirtyTracking>
+                            <enableLazyInitialization>false</enableLazyInitialization>
+                            <enableDirtyTracking>true</enableDirtyTracking>
                             <enableAssociationManagement>false</enableAssociationManagement>
                         </configuration>
                         <goals>

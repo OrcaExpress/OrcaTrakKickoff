@@ -6,6 +6,8 @@ body {
     margin:0;
     padding:0;
     height:100%;
+    background-image: url("#{resource['orcatrak/images/wallpaper.jpg']}");
+    background-size:100% auto;
 }
 
 #title {   
@@ -27,8 +29,7 @@ body {
 
 #intro {}
 
-#mainheader {
-    background-color: #efefef;
+#mainheader {    
 }
 
 #mainpanel {
@@ -46,8 +47,7 @@ body {
     left: 0;     
     padding: 0;
     margin: 0;    
-    clear: both;
-    background-color: #efefef;
+    clear: both;    
     text-align: center;
 }
 
