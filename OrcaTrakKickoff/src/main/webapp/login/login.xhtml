@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>OrcaTrak - Login</title>            
 
@@ -46,32 +48,40 @@
             <ui:define name="centerpanel">                                 
                 <h3>Some title (or not)</h3>
                 <div id="credentials">
-                    <p-accordion>
-                        <p-tab title="Login">                            
+                    <p:accordionPanel prependId="false">
+                        <p:tab title="Login">                            
                             <form action="j_security_check" method="POST">
                                 <p>
-                                    <label><i class="fa fa-user"></i> E-mail:</label>
-                                    <input id="j_username" type="email" is="p-inputtext" 
-                                           name="j_username" placeholder="e-mail" required="true"/>
+                                    <label>E-mail *:</label>                                    
+                                    <p:inputText id="j_username" 
+                                                 type="email" 
+                                                 placeholder="e-mail" 
+                                                 required="true"
+                                                 pt:name="j_username"
+                                                 pt:required="true"/>                                       
                                 </p>
                                 <p>
-                                    <label><i class="fa fa-unlock"></i> Password:</label>
-                                    <input id="j_password" type="password" inline="true" is="p-password" 
-                                           name="j_password" placeholder="password" required="true"/>
+                                    <label>Password *:</label>
+                                    <p:password id="j_password"
+                                                feedback="true"
+                                                inline="true"                                                
+                                                placeholder="password" 
+                                                required="true"
+                                                pt:name="j_password"
+                                                pt:required="true"/>
                                 </p>
                                 <p>
-                                    <button type="submit" is="p-button" icon="fa-sign-in" 
-                                            name="submit">Login</button>
+                                    <button type="submit" name="submit">Login</button>
                                 </p>
                             </form>
-                        </p-tab>
-                        <p-tab title="New Account">
+                        </p:tab>
+                        <p:tab title="New Account">
                             ...
-                        </p-tab>
-                        <p-tab title="Lorem Ipsum">
+                        </p:tab>
+                        <p:tab title="Lorem Ipsum">
                             ...
-                        </p-tab> 
-                    </p-accordion>
+                        </p:tab> 
+                    </p:accordionPanel>
                 </div>
             </ui:define>
         </ui:decorate>

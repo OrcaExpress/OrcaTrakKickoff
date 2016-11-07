@@ -58,14 +58,12 @@
             <groupId>org.primefaces</groupId>  
             <artifactId>primefaces</artifactId>  
             <version>${primefaces.version}</version>  
-        </dependency>       
-        <!--     
+        </dependency>               
         <dependency>  
             <groupId>org.primefaces.extensions</groupId>  
             <artifactId>all-themes</artifactId>   
             <version>${primefaces-theme.version}</version>  
-        </dependency> 
-        -->                
+        </dependency>            
         <!-- MySQL database driver -->
         <dependency>
             <groupId>mysql</groupId>

@@ -1,12 +1,12 @@
 div {
-    border: 1px dotted lightgray;
+    border: 0px dotted lightgray;
 }
 
 body {
     margin:0;
     padding:0;
     height:100%;
-    background-image: url("#{resource['orcatrak/images/wallpaper.jpg']}");
+    background-image: url("#{resource['orcatrak/images/cargo0.jpeg']}");
     background-size:100% auto;
 }
 
