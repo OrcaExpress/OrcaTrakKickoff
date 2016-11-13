@@ -2,36 +2,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>OrcaTrak - Home Page</title>            
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-        <meta name="apple-mobile-web-app-capable" content="yes" />        
+        <meta name="apple-mobile-web-app-capable" content="yes" />  
+        
+        <h:outputStylesheet library="orcatrak" name="css/index.css"/>
     </h:head>
     <h:body>
-        <ui:decorate template="template/layout.xhtml">                        
+        <ui:decorate template="template/layout.xhtml">  
+            <ui:define name="title">
+                <p:link class="brandname" href="#"><strong>Orca</strong>Trak</p:link>
+                <h:form>
+                    <p:growl id="messages" showDetail="true"/>
+                    <p:menuButton value="Member">
+                        <p:menuitem value="Log in" outcome="login/login.xhtml"/> 
+                        <p:separator />                       
+                        <p:menuitem value="Update account" disabled="true"/> 
+                        <p:menuitem value="Log out" disabled="true"/>                        
+                    </p:menuButton>
+                </h:form>
+                <hr/>
+            </ui:define>
 
-            <!-- skip all -->
-            <ui:param name="title" value="false"/>  
+            <!--<ui:param name="title" value="true"/>-->  
             <ui:param name="subtitle" value="false"/>  
             <ui:param name="mainheader" value="false"/>
             <ui:param name="topmenu" value="false"/>
             <ui:param name="leftpanel" value="false"/>
             <ui:param name="rightpanel" value="false"/>  
             <ui:param name="mainfooter" value="false"/> 
-            
+            <!--<ui:param name="centerpanel" value="false"/>-->
+
+
             <ui:define name="centerpanel">
-                <a href="login/login.xhtml">Login page</a>
-                <br/>
-                <hr/>
-                <a href="pages/rename-me.xhtml">Secured page of <b>users</b></a>                
-                <hr/>
-                <a href="admin/orca-admin.xhtml">Secured page of <b>admin</b></a>     
-               X: #{userBean.user}
-            </ui:define>
+                <p:button value="Get a FREE QUOTE" outcome="common/quote.xhtml"/>
+                <p:button value="Trak a freight package" outcome="common/quote.xhtml"/>
+            </ui:define>             
         </ui:decorate>
     </h:body>
 </html>

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>OrcaTrak - Quote</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" /> 
+
+        <h:outputStylesheet library="orcatrak" name="css/quote.css"/>        
+    </h:head>
+    <h:body>
+        <ui:decorate template="../template/layout.xhtml">                        
+
+            <!-- skip subtitle sections -->
+            <ui:param name="subtitle" value="false"/>
+
+            <!-- skip intro but define header -->
+            <ui:param name="intro" value="false"/>
+            <ui:define name="mainheader">
+                <!--<h4>OrcaTrak Header</h4>-->
+            </ui:define>   
+
+            <!-- skip menu -->
+            <ui:param name="topmenu" value="false"/>
+
+            <!-- skip left and right panels (the central panel cannot be skipped) -->
+            <ui:param name="leftpanel" value="false"/>
+            <ui:param name="rightpanel" value="false"/>
+
+            <!-- define title -->
+            <ui:define name="title">
+                <h2>OrcaTrak</h2>
+            </ui:define>           
+
+            <!-- define footer -->
+            <ui:define name="mainfooter">
+                OrcaTrak Footer           
+            </ui:define>   
+
+            <!-- define center panel content -->
+            <ui:define name="centerpanel">                                
+                <h:form>
+                    <p:fieldset legend="Origin" toggleable="true" toggleSpeed="500"> 
+                        <div class="ui-fluid">
+                            <p:panelGrid columns="3" columnClasses="ui-grid-col-4, ui-grid-col-4, ui-grid-col-4" 
+                                         layout="grid" styleClass="ui-panelgrid-blank"
+                                         style="text-align: right;">
+
+                                <p:outputLabel for="zip" value="Origin:"/>                                
+                                <p:inputText id="zip" value="#{quoteBean.origin}" 
+                                             placeholder="zipcode" required="true" 
+                                             requiredMessage="A ZIP code is required (e.g. 3948382)"/>
+                                <p:message for="zip"/>
+
+                                <p:outputLabel for="zoning" value="Zoning:"/>
+                                <p:selectOneButton id="zoning" value="#{quoteBean.zoning}" 
+                                                   required="true" requiredMessage="You have to select a zone">
+                                    <f:selectItem itemLabel="Business" itemValue="Business" />
+                                    <f:selectItem itemLabel="Residential" itemValue="Residential" />
+                                </p:selectOneButton>
+                                <p:message for="zoning"/>
+
+                                <p:outputLabel for="date" value="Date:" />
+                                <p:calendar id="date" value="#{quoteBean.date}" showOn="button" 
+                                            required="true" requiredMessage="You have to select a date"/>
+                                <p:message for="date"/>
+
+                                <p:outputLabel for="access" value="Pickups with restrictive access:" />
+                                <p:selectOneMenu id="access" 
+                                                 value="#{quoteBean.access}"
+                                                 required="true" requiredMessage="You have to select access type">
+                                    <f:selectItem itemLabel="Select one" itemValue="" />
+                                    <f:selectItem itemLabel="Airport" itemValue="Airport" />
+                                    <f:selectItem itemLabel="Construction Site" itemValue="Construction Zone" />
+                                    <f:selectItem itemLabel="Hazardous Material" itemValue="Hazardous Material" />
+                                    <f:selectItem itemLabel="Trade Show" itemValue="Hazardous Material" />
+                                    <f:selectItem itemLabel="School" itemValue="School" />
+                                    <f:selectItem itemLabel="Strip Mall" itemValue="Strip Malls" />
+                                </p:selectOneMenu>
+                                <p:message for="access"/>
+
+                                <p:outputLabel for="service" value="Services"/>
+                                <p:selectManyButton id="service" value="#{quoteBean.service}" 
+                                                    required="true" requiredMessage="You have to select at least a service">
+                                    <f:selectItem itemLabel="Lift Gate" itemValue="Lift Gate" />
+                                    <f:selectItem itemLabel="Inside Pickup" itemValue="Inside Pickup" />
+                                </p:selectManyButton>
+                                <p:message for="service"/>
+                            </p:panelGrid>     
+                        </div>                        
+                    </p:fieldset>
+
+                    <p:fieldset legend="Destination" toggleable="true" toggleSpeed="500">                        
+                        <div class="ui-fluid">
+
+                        </div>
+                    </p:fieldset>
+
+                    <p:fieldset legend="Shipment Items" toggleable="true" toggleSpeed="500">                        
+                        <div class="ui-fluid">
+
+                        </div>
+                    </p:fieldset>
+
+                    <p:commandButton styleClass="styleGreen" value="Submit Quote" 
+                                     actionListener="#{quoteBean.dummyAction()}"
+                                     ajax="false"/>
+                </h:form>
+
+
+            </ui:define>
+
+        </ui:decorate>
+    </h:body>
+</html>
+

@@ -1,0 +1,16 @@
+body {     
+}
+
+.brandname { 
+    color: black;
+    font-size: 30px; 
+    font-weight: 500;
+    font-size: 1.9em;
+    text-transform: none;
+    font-weight: 100;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.brandname strong {    
+}
