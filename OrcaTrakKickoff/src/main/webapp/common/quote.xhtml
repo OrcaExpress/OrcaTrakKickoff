@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>OrcaTrak - Quote</title>
 
@@ -55,7 +56,7 @@
 
                                 <p:outputLabel for="zip" value="Origin:"/>                                
                                 <p:inputText id="zip" value="#{quoteBean.origin}" 
-                                             placeholder="zipcode" required="true" 
+                                             placeholder="zipcode" required="true" pt:required="true"
                                              requiredMessage="A ZIP code is required (e.g. 3948382)"/>
                                 <p:message for="zip"/>
 
@@ -68,13 +69,13 @@
                                 <p:message for="zoning"/>
 
                                 <p:outputLabel for="date" value="Date:" />
-                                <p:calendar id="date" value="#{quoteBean.date}" showOn="button" 
+                                <p:calendar id="date" value="#{quoteBean.date}" showOn="button" pt:required="true"
                                             required="true" requiredMessage="You have to select a date"/>
                                 <p:message for="date"/>
 
                                 <p:outputLabel for="access" value="Pickups with restrictive access:" />
                                 <p:selectOneMenu id="access" 
-                                                 value="#{quoteBean.access}"
+                                                 value="#{quoteBean.access}" 
                                                  required="true" requiredMessage="You have to select access type">
                                     <f:selectItem itemLabel="Select one" itemValue="" />
                                     <f:selectItem itemLabel="Airport" itemValue="Airport" />
@@ -87,7 +88,7 @@
                                 <p:message for="access"/>
 
                                 <p:outputLabel for="service" value="Services"/>
-                                <p:selectManyButton id="service" value="#{quoteBean.service}" 
+                                <p:selectManyButton id="service" value="#{quoteBean.service}"  
                                                     required="true" requiredMessage="You have to select at least a service">
                                     <f:selectItem itemLabel="Lift Gate" itemValue="Lift Gate" />
                                     <f:selectItem itemLabel="Inside Pickup" itemValue="Inside Pickup" />
