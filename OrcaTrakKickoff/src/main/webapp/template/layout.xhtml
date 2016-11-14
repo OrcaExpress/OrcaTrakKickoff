@@ -2,23 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
-    <h:body>                
-
-        <!-- Load external JS libraries 
-        <h:outputScript library="extern" name="js/jquery.min.js"/>
-        <h:outputScript library="extern" name="js/jquery-ui.min.js"/>                                               
-        <h:outputScript library="extern" name="js/x-tag-core.min.js"/>                                               
-        <h:outputScript library="extern" name="js/primeui.min.js"/> 
-        <h:outputScript library="extern" name="js/primeelements.min.js"/> 
-         
-        <h:outputStylesheet library="extern" name="css/jquery-ui.min.css"/>  
-        <h:outputStylesheet library="extern" name="css/primeui.min.css"/> 
-        <h:outputStylesheet library="extern" name="icons/css/font-awesome.min.css"/>
-        <h:outputStylesheet library="extern" name="themes/humanity/theme.css"/>
-        -->
-        
+    <h:body>                     
         <!-- Load OrcaTrak CSS libraries -->
         <h:outputStylesheet library="orcatrak" name="css/layout.css"/>         
         <h:outputStylesheet library="orcatrak" name="css/tunningprimefaces.css"/>
@@ -129,6 +116,8 @@
                     </div>
                 </div>                                                    
             </ui:fragment>
-        </div>              
+        </div>      
+
+        <p:panelGrid/>        
     </h:body>
 </html>
